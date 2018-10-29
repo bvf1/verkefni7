@@ -65,43 +65,8 @@ function play() {
  * Sniðugt væri að færa það að búa til spurningu í nýtt fall sem ask() kallar í.
  */
 function ask() {
-  const signNumber = randomNumber(1, 4);
-  const sign;
-  const truth;
-  if (singNumber = 1) { truth = plus(); }
-  switch (sign) {
-    case 1:
-      truth = plus();
-    case 2:
-      truth = minus();
-    case 3:
-      truth = multiplication();
-    case 4:
-      truth = division();
-  }
-  return truth;
+  
  // promt
-}
-
-function plus() {
-  promt('+');
-  return true;
-
-}
-
-function minus() {
-  promt('-');
-  return true;
-}
-
-function multiplication() {
-  promt('*');
-  return true;
-}
-
-function division() {
-  promt('/');
-  return true;
 }
 
 /**
