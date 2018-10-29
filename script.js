@@ -32,23 +32,25 @@ function start() {
  *
  */
 function play() {
+  let fjoldiRettraSvara = 0;
   let start = new Date();
-  let fjoldi = 0;
 
   for (let i = 0; i<GAMES_TO_PLAY; i++) {
     let rightAnswer = ask();
+    if (rightAnswer == null) {
+      return alert("Hætt í leik");
+    } 
+    
     if (rightAnswer) {
-      fjoldi++;
+      fjoldiRettraSvara++;
     }
   }
 
   let end = new Date();
-  let time = (end - start)/60;
+  let time = (end - start) / 60;
+  let medalrett = (fjoldiRettraSvara/time);
 
-  let medalrett = (fjoldi/time);
-
-  console.log(`Þú svaraðir ${fjoldi} af ${GAMES_TO_PLAY} dæmum rétt á ${time} sekúndum`);
-  console.log(`Meðalrétt svör á secúndu eru ${medalrett}`);
+  alert(`Þú svaraðir ${fjoldiRettraSvara} af ${GAMES_TO_PLAY} dæmum rétt á ${time.toFixed(2)} sekúndum \nMeðalrétt svör á secúndu eru ${medalrett.toFixed(2)}`);
 }
 
 /**
@@ -66,8 +68,8 @@ function play() {
  * Sniðugt væri að færa það að búa til spurningu í nýtt fall sem ask() kallar í.
  */
 function ask() {
-  const sign = randomNumber(1, 4);
   let truth = false;
+  const sign = randomNumber(1, 4);
   switch (sign) {
     case 1:
       truth = plus();
@@ -83,20 +85,27 @@ function ask() {
       break;
   }
   return truth;
- // prompt
 }
 
+/**
+ * Ber sama rétt svar og svar sem notandi gefur
+ */
 function rightAnswer(result, svar) {
   if (result == svar) return true;
   return false;
 }
 
+/**
+ * Sér föll fyrir mismunandi útreikninga
+ * 
+ */
 function plus() {
   let nr1 = randomNumber(1, 100);
   let nr2 = randomNumber(1, 100);
   let result = nr1 + nr2;
   let svar = prompt('Hvað er ' + nr1 + ' + ' + nr2 + ' ?'); 
-  console.log(result);
+  if (svar == null) return null;
+
   return rightAnswer(result, svar);
 
 }
@@ -106,7 +115,7 @@ function minus() {
   let nr2 = randomNumber(1, 100);
   let result = nr1 - nr2;
   let svar = prompt('Hvað er ' + nr1 + ' - ' + nr2 + ' ?');
-  console.log(result);
+  if (svar == null) return null;
   return rightAnswer(result, svar);
 }
 
@@ -115,7 +124,7 @@ function multiplication() {
   let nr2 = randomNumber(1, 10);
   let result = nr1 * nr2;
   let svar = prompt('Hvað er ' + nr1 + ' * ' + nr2 + ' ?');
-  console.log(result);
+  if (svar == null) return null;
   return rightAnswer(result, svar);
 }
 
@@ -124,8 +133,7 @@ function division() {
   let nr2 = randomNumber(2, 10) * nr1;
   let result = nr2 / nr1;
   let svar = prompt('Hvað er ' + nr2 + ' / ' + nr1 + ' ?');
-  console.log(result);
-
+  if (svar == null) return null;
   return rightAnswer(result, svar);
 }
 
