@@ -5,7 +5,7 @@
  */
 
 // fasti sem segir til um hve marga leiki eigi að spila
-const GAMES_TO_PLAY = 10;
+const GAMES_TO_PLAY = 2;
 
 /**
  * Birtir upplýsingar um leik og eftir að notandi samþykkir spilar fyrsta leik
@@ -13,7 +13,7 @@ const GAMES_TO_PLAY = 10;
  * Eftir leik er notanda boðið að spila annan leik, ef ekki hættir forrit.
  */
 function start() {
-  alert("Markmiðið er að svara eins mörgum af 10 dæmum eins hratt og mögulegt er.");
+  alert('Markmiðið er að svara eins mörgum af 10 dæmum eins hratt og mögulegt er.');
   do { 
     play();
   } while (confirm('Spila annan?'));
@@ -27,7 +27,7 @@ function start() {
  *   Meðalrétt svör á sekúndu eru Z
  * Þar sem Y og Z hafa tvo aukastafi.
  *
- * Ef notandi ýtir á "Cancel" í leik eru skilaboðin "Hætt í leik." birt og engar
+ * Ef notandi ýtir á 'Cancel' í leik eru skilaboðin 'Hætt í leik.' birt og engar
  * upplsýingar um niðurstöður.
  *
  */
@@ -41,13 +41,14 @@ function play() {
       fjoldi++;
     }
   }
+
   let end = new Date();
   let time = (end - start)/60;
 
   let medalrett = (fjoldi/time);
 
-  console.log("Þú svaraðir {$fjoldi} af {$GAMES_TO_PLAY} dæmum rétt á {$time} sekúndum");
-  console.log("Meðalrétt svör á secúndu eru {$medalrett}")
+  console.log(`Þú svaraðir ${fjoldi} af ${GAMES_TO_PLAY} dæmum rétt á ${time} sekúndum`);
+  console.log(`Meðalrétt svör á secúndu eru ${medalrett}`);
 }
 
 /**
@@ -66,41 +67,66 @@ function play() {
  */
 function ask() {
   const sign = randomNumber(1, 4);
-  let truth = " false";
+  let truth = false;
   switch (sign) {
     case 1:
       truth = plus();
+      break;
     case 2:
       truth = minus();
+      break;
     case 3:
       truth = multiplication();
+      break;
     case 4:
       truth = division();
+      break;
   }
   return truth;
- // promt
+ // prompt
+}
+
+function rightAnswer(result, svar) {
+  if (result == svar) return true;
+  return false;
 }
 
 function plus() {
-  alert('+');
-  
-  return true;
+  let nr1 = randomNumber(1, 100);
+  let nr2 = randomNumber(1, 100);
+  let result = nr1 + nr2;
+  let svar = prompt('Hvað er ' + nr1 + ' + ' + nr2 + ' ?'); 
+  console.log(result);
+  return rightAnswer(result, svar);
 
 }
 
 function minus() {
-  alert('-');
-  return true;
+  let nr1 = randomNumber(1, 100);
+  let nr2 = randomNumber(1, 100);
+  let result = nr1 - nr2;
+  let svar = prompt('Hvað er ' + nr1 + ' - ' + nr2 + ' ?');
+  console.log(result);
+  return rightAnswer(result, svar);
 }
 
 function multiplication() {
-  alert('*');
-  return true;
+  let nr1 = randomNumber(1, 10);
+  let nr2 = randomNumber(1, 10);
+  let result = nr1 * nr2;
+  let svar = prompt('Hvað er ' + nr1 + ' * ' + nr2 + ' ?');
+  console.log(result);
+  return rightAnswer(result, svar);
 }
 
 function division() {
-  alert('/');
-  return true;
+  let nr1 = randomNumber(2, 10);
+  let nr2 = randomNumber(2, 10) * nr1;
+  let result = nr2 / nr1;
+  let svar = prompt('Hvað er ' + nr2 + ' / ' + nr1 + ' ?');
+  console.log(result);
+
+  return rightAnswer(result, svar);
 }
 
 /**
