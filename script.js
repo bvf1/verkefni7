@@ -38,7 +38,7 @@ function play() {
   for (let i = 0; i<GAMES_TO_PLAY; i++) {
     let rightAnswer = ask();
     if (rightAnswer) {
-      //fjoldi++;
+      fjoldi++;
     }
   }
   let end = new Date();
@@ -65,8 +65,42 @@ function play() {
  * Sniðugt væri að færa það að búa til spurningu í nýtt fall sem ask() kallar í.
  */
 function ask() {
-  
+  const sign = randomNumber(1, 4);
+  let truth = " false";
+  switch (sign) {
+    case 1:
+      truth = plus();
+    case 2:
+      truth = minus();
+    case 3:
+      truth = multiplication();
+    case 4:
+      truth = division();
+  }
+  return truth;
  // promt
+}
+
+function plus() {
+  alert('+');
+  
+  return true;
+
+}
+
+function minus() {
+  alert('-');
+  return true;
+}
+
+function multiplication() {
+  alert('*');
+  return true;
+}
+
+function division() {
+  alert('/');
+  return true;
 }
 
 /**
