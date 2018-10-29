@@ -19,7 +19,6 @@ function start() {
   } while (confirm('Spila annan?'));
 }
 
-
 /**
  * Spilar einn leik. Heldur utan um hvenær leikur byrjaði, hvenær endar og
  * fjölda réttra svara. Eftir leik eru birtar upplýsingar um niðurstöðu:
@@ -55,9 +54,9 @@ function play() {
 }
 
 /**
- * Spyr einnar spurningar og skilar upplýsingum um svar með því að
- * nota true, false og null ef notandi hættir. Birtir notanda propmpt til að
- * svara í og túlkar svarið yfir í tölu.
+ * Kallar á eitt fall af fjórum '+', '-', '*' eða '/' sem spyr einnar spurningar og 
+ * skilar upplýsingum um svar með því að nota true, false og null ef notandi hættir. 
+ * Birtir notanda prompt til að svara í og túlkar svarið yfir í tölu.
  *
  * Mögulegar spurningar eru:
  * - `+` dæmi þar sem báðar tölur geta verið á bilinu `[1, 100]`
@@ -66,7 +65,6 @@ function play() {
  * - `/` dæmi þar sem fyrri tala er á bilinu `[2, 10]` og seinni talan er fyrri
  *   talan sinnum tala á bilinu `[2, 10]` þ.a. svarið verði alltaf heiltala
  *
- * Sniðugt væri að færa það að búa til spurningu í nýtt fall sem ask() kallar í.
  */
 function ask() {
   let truth = false;
