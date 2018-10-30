@@ -5,7 +5,7 @@
  */
 
 // fasti sem segir til um hve marga leiki eigi að spila
-const GAMES_TO_PLAY = 10;
+const GAMES_TO_PLAY =  10;
 
 /**
  * Birtir upplýsingar um leik og eftir að notandi samþykkir spilar fyrsta leik
@@ -13,7 +13,7 @@ const GAMES_TO_PLAY = 10;
  * Eftir leik er notanda boðið að spila annan leik, ef ekki hættir forrit.
  */
 function start() {
-  alert('Markmiðið er að svara eins mörgum af 10 dæmum rétt eins hratt og mögulegt er.');
+  alert(`Markmiðið er að svara eins mörgum af ${GAMES_TO_PLAY} dæmum rétt eins hratt og mögulegt er.`);
   do { 
     play();
   } while (confirm('Spila annan?'));
@@ -46,7 +46,7 @@ function play() {
   }
 
   const end = new Date();
-  const time = (end - start) / 60;
+  const time = (end - start) / 1000;
   let medalrett = (time/fjoldiRettraSvara);
   if (fjoldiRettraSvara ===0) medalrett = 0;
 
@@ -89,11 +89,11 @@ function ask() {
 
 /**
  * Ber sama rétt svar og svar sem notandi gefur
- * skilar true ef svörin eru eins og annars false
+ * skilar true ef svörin eru eins, annars false
  */
 function rightAnswer(result, svar) {
-  svar 
-  if (result == svar) return true;
+  svar = parseInt(svar);
+  if (result === svar) return true;
   return false;
 }
 
@@ -105,9 +105,9 @@ function rightAnswer(result, svar) {
  * annars skilar það útkominni úr rightAnser fallinu.
  */
 function plus() {
-  let nr1 = randomNumber(1, 100);
-  let nr2 = randomNumber(1, 100);
-  let result = nr1 + nr2;
+  const nr1 = randomNumber(1, 100);
+  const nr2 = randomNumber(1, 100);
+  const result = nr1 + nr2;
   let svar = prompt(`Hvað er ${nr1} + ${nr2} ?`); 
   if (svar == null) return null;
   return rightAnswer(result, svar);
@@ -115,27 +115,27 @@ function plus() {
 }
 
 function minus() {
-  let nr1 = randomNumber(1, 100);
-  let nr2 = randomNumber(1, 100);
-  let result = nr1 - nr2;
+  const nr1 = randomNumber(1, 100);
+  const nr2 = randomNumber(1, 100);
+  const result = nr1 - nr2;
   let svar = prompt(`Hvað er ${nr1} - ${nr2} ?`);
   if (svar == null) return null;
   return rightAnswer(result, svar);
 }
 
 function multiplication() {
-  let nr1 = randomNumber(1, 10);
-  let nr2 = randomNumber(1, 10);
-  let result = nr1 * nr2;
+  const nr1 = randomNumber(1, 10);
+  const nr2 = randomNumber(1, 10);
+  const result = nr1 * nr2;
   let svar = prompt(`Hvað er ${nr1} * ${nr2} ?`);
   if (svar == null) return null;
   return rightAnswer(result, svar);
 }
 
 function division() {
-  let nr1 = randomNumber(2, 10);
-  let nr2 = randomNumber(2, 10) * nr1;
-  let result = nr2 / nr1;
+  const nr1 = randomNumber(2, 10);
+  const nr2 = randomNumber(2, 10) * nr1;
+  const result = nr2 / nr1;
   let svar = prompt(`Hvað er ${nr2} / ${nr1} ?`);
   if (svar == null) return null;
   return rightAnswer(result, svar);
